@@ -35,7 +35,27 @@ function learnwp_config(){
 
 add_action( 'after_setup_theme', 'learnwp_config', 0);
 
-//Res our sidebars
+// Custom Post Type
+function create_post_type_Properties()
+{
+	register_post_type(
+		'Properties',
+		array(
+			'labels' => array(
+				'name' => __('Properties'),
+				'singular_name' => __('Property'),
+			),
+			'public' => true,
+			'supports' => array(
+				'title',
+				'editor',
+			)
+		)
+	);
+}
+add_action('init', 'create_post_type_Properties');
+
+//Sidebars
 add_action('widgets_init', 'learnwp_sidebars');
 function learnwp_sidebars(){
     register_sidebar(
