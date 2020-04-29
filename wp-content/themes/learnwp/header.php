@@ -9,35 +9,52 @@
 </head>
 
 <body <?php body_class(); ?>>
-    <header>
-        <section class="top-bar">
-            <div class="container">
-                <div class="row">
-                    <div class="social-media-icons col-xl-9 col-md-7 col-sm-7 col-6">
-                        <?php
-                        if (is_active_sidebar('social-media')) {
-                            dynamic_sidebar('social-media');
-                        }
-                        ?>
-                    </div>
-                    <div class="search col-xl-3 col-md-5 col-sm-5 col-6 text-right">
-                        <?php get_search_form() ?></div>
+<!-- #site-wrapper start -->
+<div id="site-wrapper" class="site-wrapper home-main">
+    <!-- #header start -->
+    <header id="header"
+                class="main-header header-sticky header-sticky-smart header-style-01 header-float text-uppercase">
+            <div class="header-wrapper sticky-area">
+                <div class="container container-1720">
+                    <nav class="navbar navbar-expand-xl">
+                        <div class="header-mobile d-flex d-xl-none flex-fill justify-content-between align-items-center">
+                            <div class="navbar-toggler toggle-icon" data-toggle="collapse"
+                                 data-target="#navbar-main-menu">
+                                <span></span>
+                            </div>
+                            <a class="navbar-brand navbar-brand-mobile" href="index.html">
+                                <img src="images/logo.png" alt="TheDir">
+                            </a>
+                            <a class="mobile-button-search" href="#search-popup"
+                               data-gtf-mfp="true"
+                               data-mfp-options='{"type":"inline","mainClass":"mfp-move-from-top mfp-align-top search-popup-bg","closeOnBgClick":false,"showCloseBtn":false}'><i
+                                    class="far fa-search"></i></a>
+                        </div>
+                        <div class="collapse navbar-collapse" id="navbar-main-menu">
+                            <a class="navbar-brand d-none d-xl-block mr-auto" href="index.html">
+                                <img src="images/logo.png" alt="TheDir">
+                            </a>
+                            <?php wp_nav_menu(array(
+                                'theme_location' => 'my_main_menu',
+                                'container' => '',
+                                'menu_class'=> 'navbar-nav')); ?>
+                          
+                            <!-- <ul class="navbar-nav">                         
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Demos</a>                           
+                                </li>            
+                            </ul> -->
+                            <div class="header-customize justify-content-end align-items-center d-none d-xl-flex">
+                               
+                                <div class="header-customize-item button">
+                                    <a href="page-submit-listing.html" class="btn btn-primary btn-icon-right">Search Travel
+                                        <i
+                                                class="far fa-angle-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
                 </div>
             </div>
-
-        </section>
-        <section class="menu-area">
-            <div class="container">
-                <div class="align">
-                    <div class="row">
-                        <section class="logo col-md-2 col-sm-12 col-12 text-center"> 
-                            <a href="<?php echo get_home_url(); ?>"><img src="<?php echo get_template_directory_uri(); ?>/img/Logo.png" /></a>
-                        </section>
-                        <nav class="main-menu col-md-10 text-right">
-                            <?php wp_nav_menu(array('theme_location' => 'my_main_menu')); ?>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </header>
+        </header>
+        <!-- #header end -->

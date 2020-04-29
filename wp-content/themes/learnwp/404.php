@@ -3,22 +3,36 @@
 <div class="content-area">
     <main>
         <section class="middle-area">
+        <div id="wrapper-content" class="wrapper-content pt-0 pb-0">
             <div class="container">
-                <div class="row">
-
-                    <div class="error-404">
-                        <header>
-                            <h1>Page not found</h1>
-                            <p>The page you are looking for doesn't exist</p>
-                        </header>
-                        <div class="error">
-                            <p>How about doing a search?</p>
-                            <?php get_search_form() ?>
-                            <?php the_widget('WP_Widget_Recent_Posts', array('title' => 'Latest Posts', 'number' => 3) ); ?>
+                <div class="page-container text-center">
+                    <div class="mb-7">
+                        <svg class="icon icon-map-marker-crossed">
+                            <use xlink:href="#icon-map-marker-crossed"></use>
+                        </svg>
+                    </div>
+                    <div class="mb-7">
+                        <h3 class="mb-7">Ohh! Page Not Found</h3>
+                        <div class="text-gray">It seems we can’t find what you’re looking for. Perhaps
+                            searching
+                            can help or go back to <a href="index.html"
+                                                      class="text-primary text-decoration-underline">Homepage</a>.
                         </div>
                     </div>
+                    <div class="form-search">
+                        <form>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search again...">
+                                <button class="btn btn-link input-group-append text-dark pr-3" type="submit"><i
+                                        class="fal fa-search"></i></button>
+                            </div>
+                        </form>
+                    </div>
+
                 </div>
             </div>
+        </div>
+        <!-- #wrapper-content end -->
         </section>
         <section class="map">
             <div class="container">
