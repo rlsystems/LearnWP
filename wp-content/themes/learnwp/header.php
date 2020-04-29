@@ -4,6 +4,7 @@
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <?php wp_head(); ?>
 </head>
@@ -22,8 +23,8 @@
                                  data-target="#navbar-main-menu">
                                 <span></span>
                             </div>
-                            <a class="navbar-brand navbar-brand-mobile" href="index.html">
-                                <img src="images/logo.png" alt="TheDir">
+                            <a class="navbar-brand navbar-brand-mobile" href="<?php echo get_site_url()?>">
+                                <img src="<?php echo bloginfo('template_url')?>/img/logo-black.png" alt="Rainforest Cruises">
                             </a>
                             <a class="mobile-button-search" href="#search-popup"
                                data-gtf-mfp="true"
@@ -31,19 +32,15 @@
                                     class="far fa-search"></i></a>
                         </div>
                         <div class="collapse navbar-collapse" id="navbar-main-menu">
-                            <a class="navbar-brand d-none d-xl-block mr-auto" href="index.html">
-                                <img src="images/logo.png" alt="TheDir">
+                            <a class="navbar-brand d-none d-xl-block mr-auto" href="<?php echo get_site_url()?>">
+                            <img src="<?php echo bloginfo('template_url')?>/img/logo.png" alt="Rainforest Cruises">
                             </a>
+                            <!-- Nav Menu Items -->
+                            <!-- custom classes added in function.php -->
                             <?php wp_nav_menu(array(
                                 'theme_location' => 'my_main_menu',
                                 'container' => '',
-                                'menu_class'=> 'navbar-nav')); ?>
-                          
-                            <!-- <ul class="navbar-nav">                         
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Demos</a>                           
-                                </li>            
-                            </ul> -->
+                                'menu_class'=> 'navbar-nav')); ?>                       
                             <div class="header-customize justify-content-end align-items-center d-none d-xl-flex">
                                
                                 <div class="header-customize-item button">

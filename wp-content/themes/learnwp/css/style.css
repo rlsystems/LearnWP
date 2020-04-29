@@ -18230,6 +18230,7 @@ iframe {
 --------------------------------------------------------------*/
 .main-footer {
   padding-bottom: 55px;
+  background-image: url(" ./background-footer-cover.jpg");
 }
 
 .gtf-back-to-top {
@@ -21215,7 +21216,7 @@ iframe {
 }
 
 .home-main-intro {
-  background-image: url("images/other/banner.jpg");
+  background-image: url(" ./galapagos-sealion.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

@@ -13,7 +13,7 @@ function load_scripts(){
 
     wp_enqueue_style('slick', get_template_directory_uri() . '/vendors/slick/slick.css', array(), false, 'all'); 
     wp_enqueue_style('animate', get_template_directory_uri() . '/vendors/animate.css', array(), false, 'all'); 
-
+    wp_enqueue_style('air-datepicker', get_template_directory_uri() . '/vendors/air-datepicker/css/datepicker.min.css', array(), false, 'all'); 
     wp_enqueue_style('template', get_template_directory_uri() . '/css/style.css', array(), false, 'all'); 
 
 
@@ -27,8 +27,11 @@ function load_scripts(){
     wp_enqueue_script('magnific-popup', get_template_directory_uri() . '/vendors/magnific-popup/jquery.magnific-popup.js', array()); 
     wp_enqueue_script('slick', get_template_directory_uri() . '/vendors/slick/slick.js', array()); 
     wp_enqueue_script('waypoints', get_template_directory_uri() . '/vendors/waypoints/jquery.waypoints.js', array()); 
+    wp_enqueue_script('air-datepicker', get_template_directory_uri() . '/vendors/air-datepicker/js/datepicker.min.js', array()); 
+    wp_enqueue_script('air-datepicker-js', get_template_directory_uri() . '/vendors/air-datepicker/js/i18n/datepicker.en.js', array()); 
 
-    wp_enqueue_script('js-app', get_template_directory_uri() . '/js/app.js', array()); 
+
+    wp_enqueue_script('js-app', get_template_directory_uri() . '/js/app.js', array('jquery'), false, true); 
 
 
 }
