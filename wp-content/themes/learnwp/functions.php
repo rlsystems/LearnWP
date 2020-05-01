@@ -19,6 +19,7 @@ function load_scripts(){
 
     //js scripts
     wp_enqueue_script('jquery', get_template_directory_uri() . '/vendors/jquery.min.js', array()); 
+    wp_enqueue_script('jquery-ui', get_template_directory_uri() . '/vendors/jquery-ui/jquery-ui.min.js', array()); 
 
     wp_enqueue_script('popper', get_template_directory_uri() . '/vendors/popper/popper.js', array()); 
     wp_enqueue_script('bootstrap', get_template_directory_uri() . '/vendors/bootstrap/js/bootstrap.js', array()); 
@@ -29,7 +30,6 @@ function load_scripts(){
     wp_enqueue_script('waypoints', get_template_directory_uri() . '/vendors/waypoints/jquery.waypoints.js', array()); 
     wp_enqueue_script('air-datepicker', get_template_directory_uri() . '/vendors/air-datepicker/js/datepicker.min.js', array()); 
     wp_enqueue_script('air-datepicker-js', get_template_directory_uri() . '/vendors/air-datepicker/js/i18n/datepicker.en.js', array()); 
-
 
     wp_enqueue_script('js-app', get_template_directory_uri() . '/js/app.js', array('jquery'), false, true); 
 
@@ -81,7 +81,7 @@ function _namespace_modify_menuclass($ulclass) {
 
 add_filter('wp_nav_menu', '_namespace_modify_menuclass');
 
-// Custom Post Type
+// Custom Post Type -Properties 
 function create_post_type_Properties()
 {
 	register_post_type(
@@ -102,7 +102,7 @@ function create_post_type_Properties()
 }
 add_action('init', 'create_post_type_Properties');
 
-// Custom Post Type
+// Custom Post Type - Destinations
 function create_post_type_Destinations()
 {
 	register_post_type(
@@ -123,6 +123,71 @@ function create_post_type_Destinations()
 }
 add_action('init', 'create_post_type_Destinations');
 
+// Custom Post Type - Countries
+function create_post_type_Countries()
+{
+	register_post_type(
+		'Countries',
+		array(
+			'labels' => array(
+				'name' => __('Countries'),
+                'singular_name' => __('Country'),
+			),
+			'public' => true,
+			'supports' => array(
+				'title',
+                'editor',
+                'thumbnail',
+			)
+		)
+	);
+}
+add_action('init', 'create_post_type_Countries');
+
+// Custom Post Type - Styles
+function create_post_type_Styles()
+{
+	register_post_type(
+		'Styles',
+		array(
+			'labels' => array(
+				'name' => __('Styles'),
+                'singular_name' => __('Style'),
+			),
+			'public' => true,
+			'supports' => array(
+				'title',
+                'editor',
+                'thumbnail',
+			)
+		)
+	);
+}
+add_action('init', 'create_post_type_Styles');
+
+// Custom Post Type - Travel
+function create_post_type_Travel()
+{
+	register_post_type(
+		'Travel',
+		array(
+			'labels' => array(
+				'name' => __('Travel Mode'),
+                'singular_name' => __('Travel Mode'),
+			),
+			'public' => true,
+			'supports' => array(
+				'title',
+                'editor',
+                'thumbnail',
+			)
+		)
+	);
+}
+add_action('init', 'create_post_type_Travel');
+
+//custom image size for blog thumbnails
+add_image_size( 'blog-image-crop', 510, 414, true );
 
 //secondary image to properties
 if (class_exists('MultiPostThumbnails')) {
@@ -132,6 +197,18 @@ if (class_exists('MultiPostThumbnails')) {
             'label' => __( 'Header Image', '[YOUR THEME TEXT DOMAIN]'),
             'id' => 'secondary-image',
             'post_type' => 'properties'
+        )
+    );
+}
+
+//secondary image to destinations
+if (class_exists('MultiPostThumbnails')) {
+    new MultiPostThumbnails(
+        array(
+            // Replace [YOUR THEME TEXT DOMAIN] below with the text domain of your theme (found in the theme's `style.css`).
+            'label' => __( 'Header Image', '[YOUR THEME TEXT DOMAIN]'),
+            'id' => 'header-image',
+            'post_type' => 'destinations'
         )
     );
 }

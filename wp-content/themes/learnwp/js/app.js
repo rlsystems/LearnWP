@@ -306,6 +306,7 @@
 			var options_default = {
 				slidesToScroll: 1,
 				slidesToShow: 1,
+
 				adaptiveHeight: true,
 				arrows: true,
 				dots: true,

@@ -1,7 +1,9 @@
 <div class="box" data-animate="zoomIn">
     <div class="card border-0">
         <a class="hover-scale" href="<?php echo get_permalink() ?>">
-            <img src="<?php echo get_the_post_thumbnail_url()?>" alt="<?php echo get_the_title() ?>" class="image">
+            <div class="image">
+            <?php the_post_thumbnail() ?>
+            </div>
         </a>
         <div class="card-body px-0 pt-4">
             <h5 class="mb-0 card-title">
