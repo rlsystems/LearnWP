@@ -89,17 +89,52 @@ function create_post_type_Properties()
 		array(
 			'labels' => array(
 				'name' => __('Properties'),
-				'singular_name' => __('Property'),
+                'singular_name' => __('Property'),
 			),
 			'public' => true,
 			'supports' => array(
 				'title',
-				'editor',
+                'editor',
+                'thumbnail',
 			)
 		)
 	);
 }
 add_action('init', 'create_post_type_Properties');
+
+// Custom Post Type
+function create_post_type_Destinations()
+{
+	register_post_type(
+		'Destinations',
+		array(
+			'labels' => array(
+				'name' => __('Destinations'),
+                'singular_name' => __('Destination'),
+			),
+			'public' => true,
+			'supports' => array(
+				'title',
+                'editor',
+                'thumbnail',
+			)
+		)
+	);
+}
+add_action('init', 'create_post_type_Destinations');
+
+
+//secondary image to properties
+if (class_exists('MultiPostThumbnails')) {
+    new MultiPostThumbnails(
+        array(
+            // Replace [YOUR THEME TEXT DOMAIN] below with the text domain of your theme (found in the theme's `style.css`).
+            'label' => __( 'Header Image', '[YOUR THEME TEXT DOMAIN]'),
+            'id' => 'secondary-image',
+            'post_type' => 'properties'
+        )
+    );
+}
 
 //Sidebars
 add_action('widgets_init', 'learnwp_sidebars');
