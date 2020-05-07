@@ -34,77 +34,218 @@ while (have_posts()) :
             <div class="container">
 
                 <!-- Page Title -->
-                <div class="page-title pt-7 pb-2 border-bottom">
+                <div class="page-title pt-7 pb-5">
                     <div class="explore-details-top d-flex flex-wrap flex-lg-nowrap bg-white">
                         <div class="store">
                             <!-- Property Name -->
                             <div class="d-flex flex-wrap">
-                                <h2 class="text-dark mr-3 mb-2"><?php echo $data['Name']; ?>
+                                <h2 class="text-dark mr-3"><?php echo $data['Name']; ?>
                                 </h2>
                             </div>
-
-                            <!-- nav links -->
-                            <ul class="list-inline store-meta d-flex flex-wrap align-items-center">
-
-                                <?php
-                                $count = 0;
-                                foreach ($data['Itineraries'] as $item) {
-                                    $count += 1;
-                                    if ($count > 1) {
-                                ?>
-                                        <li class="list-inline-item separate"></li>
-                                        <li class="list-inline-item"><span><?php echo $item['ShortName']; ?></span></li>
-                                    <?php
-
-                                    } else {
-                                    ?>
-                                        <li class="list-inline-item"><span><?php echo $item['ShortName']; ?></span></li>
-                                <?php
+                            <!-- Destination -->
+                            <?php
+                            $destinations = get_field('destination');
+                            $count = 0;
+                            if ($destinations) :
+                                foreach ($destinations as $destination) :
+                                    if ($count > 0) {
+                                        echo ", ";
                                     }
-                                }
-                                ?>
+                            ?>
+                                    <a href="<?php echo the_permalink($destination->ID); ?>"><?php echo get_the_title($destination->ID);
+                                                                                                $count += 1; ?></a>
+                            <?php
+
+                                endforeach;
+                            endif;
+                            ?> /
+                            <!-- Country -->
+                            <?php
+                            $countries = get_field('country');
+                            $count = 0;
+                            if ($countries) :
+                                foreach ($countries as $country) :
+                                    if ($count > 0) {
+                                        echo ", ";
+                                    }
+                                    echo get_the_title($country->ID);
+                                    $count += 1;
+                                endforeach;
+                            endif;
+                            ?> /
+                            <!-- Style -->
+                            <?php $styles = get_field('style');
+                            $count = 0;
+                            if ($styles) :
+                                foreach ($styles as $style) :
+                                    if ($count > 0) {
+                                        echo ", ";
+                                    }
+                                    echo get_the_title($style->ID);
+                                    $count += 1;
+                                endforeach;
+                            endif;
+                            ?>
 
 
-
-
-                                <li class="list-inline-item separate"></li>
-                                <li class="list-inline-item">
-                                    <span>Cabins</span>
-                                </li>
-                                <li class="list-inline-item separate"></li>
-                                <li class="list-inline-item">
-                                    <span>Prices</span>
-                                </li>
-                            </ul>
                         </div>
                         <!-- share links -->
                         <div class="ml-0 ml-lg-auto mt-4 mt-lg-0 d-flex flex-wrap flex-sm-nowrap">
                             <h2 class="text-dark mr-3 mb-2">
-
                                 <?php
                                 $price = number_format(get_field('price_from'), 0, '.', ',');
                                 echo "$" . $price;
                                 ?>+
                             </h2>
-                            
                         </div>
+
                     </div>
+
                 </div>
 
                 <!-- Page Content -->
-                <div class="page-container row bg-white pt-8 pb-9">
+                <div class="page-container row bg-white pb-9">
 
                     <!-- Left Content -->
                     <div class="page-content col-xl-8 mb-8 mb-xl-0 pt-1">
-                        <div class="explore-details-container">
-                            <div class="mb-9">
-                                <div class="mb-7">
-                                    <?php echo get_the_post_thumbnail($post->ID, 'large') ?>
-                                </div>
-                                <div class="mb-7"></div>
-                                <?php the_content() ?>
+                        <div class="collapse-tabs">
+                            <div class="tabs border-bottom pb-2 mb-6 d-none d-sm-block">
+
+                                <!-- Tab Nav -->
+                                <ul class="nav nav-pills tab-style-01" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="overview-tab" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Overview</a>
+                                    </li>
+                                    <!-- Itinerary Loop Tab Nav -->
+                                    <?php
+                                    $count = 0;
+                                    foreach ($data['Itineraries'] as $item) {
+
+                                    ?>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="itinerary-<?php echo $item['Id']; ?>-tab" data-toggle="tab" href="#itinerary-<?php echo $item['Id']; ?>" role="tab" aria-controls="itinerary-<?php echo $item['Id']; ?>" aria-selected="false"><?php echo $item['ShortName']; ?> </a>
+                                        </li>
+                                    <?php
+                                    }
+                                    ?>
+                                    <!-- End Itinerary Loop Tab Nav -->
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="cabins-tab" data-toggle="tab" href="#cabins" role="tab" aria-controls="cabins" aria-selected="false">Cabins</a>
+                                    </li>
+                                </ul>
                             </div>
 
+                            <!-- Tab Content -->
+                            <div class="tab-content">
+                                <div id="collapse-tabs-accordion">
+
+                                    <!-- Overview -->
+                                    <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+                                        <div class="card bg-transparent mb-4 mb-sm-0">
+                                            <div class="card-header d-block d-sm-none bg-transparent px-0 py-1" id="headingOverview">
+                                                <h5 class="mb-0">
+                                                    <button class="btn text-uppercase btn-block" data-toggle="collapse" data-target="#overview-collapse" aria-expanded="true" aria-controls="overview-collapse">
+                                                        Overview
+                                                    </button>
+                                                </h5>
+                                            </div>
+                                            <div id="overview-collapse" class="collapse show collapsible" aria-labelledby="headingOverview" data-parent="#collapse-tabs-accordion">
+                                                <div class="card-body p-sm-0 border-sm-0">
+                                                    <div class="mb-7">
+                                                        <?php echo get_the_post_thumbnail($post->ID, 'large') ?>
+                                                    </div>
+                                                    <div class="mb-7">
+                                                        <?php the_content() ?>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Itineraries -->
+                                    <?php
+                                    $count = 0;
+                                    foreach ($data['Itineraries'] as $item) {
+
+                                    ?>
+                                        <div class="tab-pane" id="itinerary-<?php echo $item['Id']; ?>" role="tabpanel" aria-labelledby="<?php echo $item['Id']; ?>-tab">
+                                            <div class="card bg-transparent mb-4 mb-sm-0">
+                                                <div class="card-header d-block d-sm-none bg-transparent px-0 py-1" id="heading-<?php echo $item['Id']; ?>">
+                                                    <h5 class="mb-0">
+                                                        <button class="btn text-uppercase btn-block collapsed" data-toggle="collapse" data-target="#itinerary-<?php echo $item['Id']; ?>-collapse" aria-expanded="true" aria-controls="overview-collapse">
+                                                            <?php echo $item['ShortName']; ?>
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div id="itinerary-<?php echo $item['Id']; ?>-collapse" class="collapse collapsible" aria-labelledby="headingReview" data-parent="#collapse-tabs-accordion">
+                                                    <div class="card-body p-sm-0 border-sm-0">
+                                                        <div class="mb-7">
+                                                            <img src="<?php echo $item['ImageDTOs'][0]['ImageUrl'] ?>">
+                                                        </div>
+                                                        <h4><?php echo $item['Name'] ?></h4>
+                                                        <!-- Days -->
+                                                        <?php $days = $item['ItineraryDays'];
+                                                        if ($days) :
+                                                            foreach ($days as $day) :
+
+                                                        ?>
+                                                                <h5><span class="badge badge-primary">Day <?php echo $day['DayNumber']; ?></span> <?php echo $day['Title']; ?></h5>
+                                                        <?php
+                                                                echo $day['Excerpt'];
+                                                                ?>
+                                                                <hr>
+                                                                <?php
+                                                            endforeach;
+                                                        endif;
+                                                        ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php
+                                    }
+                                    ?>
+
+                                    <!-- Cabins -->
+                                    <div class="tab-pane" id="cabins" role="tabpanel" aria-labelledby="cabins-tab">
+                                        <div class="card bg-transparent mb-4 mb-sm-0">
+                                            <div class="card-header d-block d-sm-none bg-transparent px-0 py-1" id="headingCabins">
+                                                <h5 class="mb-0">
+                                                    <button class="btn text-uppercase btn-block collapsed" data-toggle="collapse" data-target="#cabins-collapse" aria-expanded="true" aria-controls="overview-collapse">
+                                                        Cabins
+                                                    </button>
+                                                </h5>
+                                            </div>
+                                            <div id="cabins-collapse" class="collapse collapsible" aria-labelledby="headingCabins" data-parent="#collapse-tabs-accordion">
+                                                <div class="card-body p-sm-0 border-sm-0">
+                                                    <h4>Quick Facts</h4>
+                                                    <span class="font-weight-semibold font-size-md">Number Of Cabins: </span><?php echo $data['NumberOfCabins']; ?><br>
+                                                    <span class="font-weight-semibold font-size-md">Capacity: </span><?php echo $data['PaxCapacity']; ?><br>
+                                                    <span class="font-weight-semibold font-size-md">Option to Share: </span><?php echo $data['OptionToShare']; ?><br>
+                                                    <span class="font-weight-semibold font-size-md">Interconnectable Cabins: </span><?php echo $data['InterconnectableCabins']; ?><br>
+                                                    <span class="font-weight-semibold font-size-md">Air Conditioning: </span><?php echo $data['AirConditioning']; ?><br>
+                                                    <hr>
+                                                    <?php
+                                                    $count = 0;
+                                                    foreach ($data['CabinDTOs'] as $item) {
+                                                    ?>
+                                                        <h4><?php echo $item['Name']; ?></h4>
+                                                        <img class="mb-4" src="<?php echo $item['ImageDTOs'][0]['ImageUrl']; ?>"><br>
+                                                        <span class="font-weight-semibold font-size-md">Size: </span><?php echo $item['Size']; ?><br>
+                                                        <span class="font-weight-semibold font-size-md">Beds: </span><?php echo $item['Beds']; ?><br>
+                                                        <span class="font-weight-semibold font-size-md">Windows: </span><?php echo $item['Windows']; ?><br>
+                                                        <?php echo $item['Features']; ?>
+                                                        <hr>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <!-- End Left Content -->

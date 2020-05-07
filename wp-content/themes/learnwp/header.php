@@ -28,8 +28,10 @@
                         </div>
                         <div class="collapse navbar-collapse" id="navbar-main-menu">
                             <a class="navbar-brand d-none d-xl-block mr-auto" href="<?php echo get_site_url() ?>">
-                                <img src="<?php echo bloginfo('template_url') ?>/img/logo.png" alt="Rainforest Cruises">
+                                <img class="brand-white" src="<?php echo bloginfo('template_url') ?>/img/logo-white.png" alt="Rainforest Cruises">
+                                <img class="brand-black" src="<?php echo bloginfo('template_url') ?>/img/logo-black.png" alt="Rainforest Cruises">
                             </a>
+
                             <!-- Nav Menu Items -->
                             <!-- custom classes added in function.php -->
                             <?php wp_nav_menu(array(
@@ -37,6 +39,8 @@
                                 'container' => '',
                                 'menu_class' => 'navbar-nav'
                             )); ?>
+                             
+                            
                             <div class="header-customize justify-content-end align-items-center d-none d-xl-flex">
 
                                 <div class="header-customize-item button">

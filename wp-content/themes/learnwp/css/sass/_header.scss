@@ -1,6 +1,6 @@
 .header-wrapper {
 	font-family: $font-family-base;
-	color: $black;
+	color: $white;
 }
 
 .header-light .header-wrapper {
@@ -145,6 +145,14 @@
 		max-height: 64px;
 		@include transition(max-height 0.5s);
 	}
+	
+	.brand-white { //swap out black and white logos
+		display: inline !important;
+	}
+	.brand-black {
+		display: none !important;
+	}
+
 
 	.nav-link {
 		font-weight: 600;
@@ -342,6 +350,7 @@
 			.sticky-area {
 				box-shadow: 0 2px 7px rgba(0, 0, 0, 0.15);
 			}
+			
 		}
 
 		.toggle {
@@ -411,6 +420,9 @@
 	transition: -webkit-transform 0.5s;
 	transition: transform 0.5s;
 	transition: transform 0.5s, -webkit-transform 0.5s;
+		
+
+
 }
 
 
@@ -426,10 +438,11 @@
 			@include d-flex();
 			@include justify-content-center();
 			@include flex-shrink-0();
-
+			
 			img {
 				max-height: 110px;
 			}
+
 		}
 
 		.nav-link {
@@ -517,7 +530,7 @@
 			padding: 25px 25px 0;
 			left: -200%;
 			overflow: auto;
-
+			margin: auto;
 			h5 {
 				font-family: inherit;
 				margin-bottom: 15px;
@@ -572,10 +585,29 @@
 
 	.sticky-area-wrap.sticky {
 		height: 86px;
-
-		.navbar-brand img {
+		
+		.navbar-brand {
 			max-height: 56px;
+			
 		}
+		
+		.navbar-brand .brand-white { //swap out black and white logos
+			display: none !important;
+		}
+		.navbar-brand .brand-black {
+			display: inline !important;
+
+		}
+		
+		.nav-link { //this makes link black when sticky
+			color: $black;
+			&:hover {
+				color: $primary;
+			}
+			
+		}
+
+
 	}
 }
 
@@ -696,8 +728,8 @@
 
 .header-style-01 {
 	.sticky-area {
-		background: transparent;
-	}
+		background: linear-gradient(180deg, rgba(0,0,0,.5) 0%, rgba(74,74,74,.3) 47%, rgba(255,255,255,0) 100%) //bg-sticky color
+		}
 
 	.sticky .sticky-area {
 		background: $white;
@@ -706,6 +738,7 @@
 	.navbar-nav > .nav-item > .nav-link, .header-customize-item .link {
 		padding: 45px 0;
 		line-height: 25px;
+		
 	}
 
 	.form-search {
@@ -790,6 +823,7 @@
 
 	.navbar-nav > .nav-item > .nav-link, .header-customize-item .link {
 		@include media-breakpoint-up(xl) {
+			
 			padding: 30px 0;
 		}
 	}
