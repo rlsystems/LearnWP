@@ -107,7 +107,7 @@ while (have_posts()) :
                 <div class="page-container row bg-white pb-9">
 
                     <!-- Left Content -->
-                    <div class="page-content col-xl-8 mb-8 mb-xl-0 pt-1">
+                    <div class="page-content col-12 mb-8 mb-xl-0 pt-1">
                         <div class="collapse-tabs">
                             <div class="tabs border-bottom pb-2 mb-6 d-none d-sm-block">
 
@@ -150,15 +150,63 @@ while (have_posts()) :
                                                 </h5>
                                             </div>
                                             <div id="overview-collapse" class="collapse show collapsible" aria-labelledby="headingOverview" data-parent="#collapse-tabs-accordion">
-                                                <div class="card-body p-sm-0 border-sm-0">
-                                                    <div class="mb-7">
-                                                        <?php echo get_the_post_thumbnail($post->ID, 'large') ?>
-                                                    </div>
-                                                    <div class="mb-7">
-                                                        <?php the_content() ?>
-                                                    </div>
+                                                <div class="row">
+                                                    <!-- left -->
+                                                    <div class="col-lg-8 col-sm-12">
+                                                        <div class="card-body p-sm-0 border-sm-0">
+                                                            <div class="mb-7">
+                                                                <?php echo get_the_post_thumbnail($post->ID, 'large') ?>
+                                                            </div>
+                                                            <div class="mb-7">
+                                                                <?php the_content() ?>
+                                                            </div>
 
+                                                        </div>
+                                                    </div>
+                                                    <!-- right -->
+                                                    <div class="col-lg-4 col-sm-12">
+                                                        <div class="card-body px-0 pb-3">
+                                                            <!-- Country -->
+                                                            <div class="card-title text-uppercase text-dark font-weight-semibold font-size-md">
+                                                                <?php
+                                                                $types = get_field('travel_type');
+                                                                if ($types) :
+                                                                    foreach ($types as $type) :
+                                                                        echo get_the_title($type->ID);
+                                                                    endforeach;
+                                                                endif;
+                                                                ?>
+                                                                
+                                                                <span>Highlights</span>
+                                                            </div>
+                                                            <?php echo get_field('highlights'); ?>
+                                                        </div>
+                                                        <div class="card-body px-0 pb-3">
+                                                            <div class="card-title text-uppercase text-dark font-weight-semibold font-size-md">
+                                                                <span>Send an Enquiry</span>
+                                                            </div>
+                                                            <div class="contact-form">
+                                                                <form>
+                                                                    <div class="form-group mb-2">
+                                                                        <label class="sr-only" for="name">Name</label>
+                                                                        <input type="text" id="name" class="form-control form-control-sm" placeholder="Name:">
+                                                                    </div>
+                                                                    <div class="form-group mb-2">
+                                                                        <label class="sr-only" for="email">Email</label>
+                                                                        <input type="text" id="email" class="form-control form-control-sm" placeholder="Email Address:">
+                                                                    </div>
+                                                                    <div class="form-group mb-2">
+                                                                        <label class="sr-only" for="message">Message</label>
+                                                                        <textarea class="form-control" id="message" placeholder="Message..."></textarea>
+                                                                    </div>
+                                                                    <button type="submit" class="btn btn-primary btn-block btn-sm">Send Message
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -179,114 +227,218 @@ while (have_posts()) :
                                                     </h5>
                                                 </div>
                                                 <div id="itinerary-<?php echo $item['Id']; ?>-collapse" class="collapse collapsible" aria-labelledby="headingReview" data-parent="#collapse-tabs-accordion">
-                                                    <div class="card-body p-sm-0 border-sm-0">
-                                                        <div class="mb-7">
-                                                            <img src="<?php echo $item['ImageDTOs'][0]['ImageUrl'] ?>">
-                                                        </div>
-                                                        <h4><?php echo $item['Name'] ?></h4>
-                                                        <!-- Days -->
-                                                        <?php $days = $item['ItineraryDays'];
-                                                        if ($days) :
-                                                            foreach ($days as $day) :
+                                                    <div class="row">
+                                                        <!-- left -->
+                                                        <div class="col-lg-8 col-sm-12">
 
-                                                        ?>
-                                                                <h5><span class="badge badge-primary">Day <?php echo $day['DayNumber']; ?></span> <?php echo $day['Title']; ?></h5>
-                                                        <?php
-                                                                echo $day['Excerpt'];
+                                                            <div class="card-body p-sm-0 border-sm-0">
+                                                                <div class="mb-7">
+                                                                    <img src="<?php echo $item['ImageDTOs'][0]['ImageUrl'] ?>">
+                                                                </div>
+                                                                <h4><?php echo $item['Name'] ?></h4>
+                                                                <!-- Days -->
+                                                                <?php $days = $item['ItineraryDays'];
+                                                                if ($days) :
+                                                                    foreach ($days as $day) :
+
                                                                 ?>
-                                                                <hr>
+                                                                        <h5><span class="badge badge-primary">Day <?php echo $day['DayNumber']; ?></span> <?php echo $day['Title']; ?></h5>
+                                                                        <?php
+                                                                        echo $day['Excerpt'];
+                                                                        ?>
+                                                                        <hr>
                                                                 <?php
-                                                            endforeach;
-                                                        endif;
-                                                        ?>
+                                                                    endforeach;
+                                                                endif;
+                                                                ?>
+                                                            </div>
+                                                        </div>
+                                                        <!-- right -->
+                                                        <div class="col-lg-4 col-sm-12">
+                                                            <!-- date widget -->
+                                                            <div class="card-body px-0 pb-0">
+                                                                <h4>2020 Availability <span class="float-right badge badge-primary">Promos</span></h4>
+                                                                <ul class="list-group list-group-flush">
+                                                                    <?php
+                                                                    $months = $item['DepartureMonths'];
+                                                                    if ($months) :
+                                                                        foreach ($months as $month) :
+                                                                    ?>
+                                                                            <li class="list-group-item bg-transparent d-flex text-dark px-0 border-top-0">
+                                                                                <label class="text-dark font-weight-semibold mb-0"><?php echo $month['MonthName']; ?></label>
+                                                                                <span class="text-dark ml-auto">
+                                                                                    <?php
+                                                                                    $days = $month['Days'];
+                                                                                    if ($days) :
+                                                                                        foreach ($days as $day) :
+                                                                                            if ($day['HasPromo'] == true) {
+                                                                                    ?>
+                                                                                                <span class="ml-1" style="color: #00b099;">
+                                                                                                    <?php echo $day['Day']; ?>
+                                                                                                </span>
+                                                                                            <?php
+                                                                                            } else {
+                                                                                            ?>
+                                                                                                <span class="ml-1">
+                                                                                                    <?php echo $day['Day']; ?>
+                                                                                                </span>
+                                                                                    <?php
+                                                                                            }
+
+
+                                                                                        endforeach;
+                                                                                    endif;
+                                                                                    ?>
+                                                                                </span>
+                                                                            </li>
+                                                                    <?php
+                                                                        endforeach;
+                                                                    endif;
+
+
+                                                                    ?>
+                                                                </ul>
+                                                                <!-- <ul class="list-group list-group-flush">
+                                                                    <li class="list-group-item bg-transparent d-flex text-dark px-0 border-top-0">
+                                                                        <label class="text-dark font-weight-semibold mb-0">January</label>
+                                                                        <span class="text-dark ml-auto">1</span>
+                                                                    </li>
+
+                                                                </ul> -->
+                                                                </span>
+                                                                <!-- Inclusions -->
+                                                                <div class="card-body px-0 pb-0 mt-5">
+                                                                    <h4>Inclusions</h4>
+                                                                    <ul class="icon-list list-group list-group-flush list-group-borderless">
+                                                                        <?php
+                                                                        $inclusions = $item['Inclusions'];
+                                                                        if ($inclusions) :
+                                                                            foreach ($inclusions as $inclusion) :
+                                                                        ?>
+                                                                                <li class="list-group-item p-0 mb-3 icon-box no-shape icon-box-style-03 ">
+                                                                                    <span class="icon-box-icon d-inline-block mr-1">+</span>
+                                                                                    <span>
+                                                                                        <?php
+                                                                                        echo $inclusion['Description'];
+                                                                                        ?>
+                                                                                    </span>
+                                                                                </li>
+                                                                        <?php
+                                                                            endforeach;
+                                                                        endif;
+                                                                        ?>
+                                                                    </ul>
+                                                                </div>
+                                                                <!-- Exclusions -->
+                                                                <div class="card-body px-0 pb-0 mt-5">
+                                                                    <h4>Exclusions</h4>
+                                                                    <ul class="icon-list list-group list-group-flush list-group-borderless">
+                                                                        <?php
+                                                                        $exclusions = $item['Exclusions'];
+                                                                        if ($exclusions) :
+                                                                            foreach ($exclusions as $exclusion) :
+                                                                        ?>
+                                                                                <li class="list-group-item p-0 mb-3 icon-box no-shape icon-box-style-03 ">
+                                                                                    <span class="icon-box-icon d-inline-block mr-1">-</span>
+                                                                                    <span>
+                                                                                        <?php
+                                                                                        echo $exclusion['Description'];
+                                                                                        ?>
+                                                                                    </span>
+                                                                                </li>
+                                                                        <?php
+                                                                            endforeach;
+                                                                        endif;
+                                                                        ?>
+                                                                    </ul>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    <?php
+                                        <?php
                                     }
-                                    ?>
+                                        ?>
 
-                                    <!-- Cabins -->
-                                    <div class="tab-pane" id="cabins" role="tabpanel" aria-labelledby="cabins-tab">
-                                        <div class="card bg-transparent mb-4 mb-sm-0">
-                                            <div class="card-header d-block d-sm-none bg-transparent px-0 py-1" id="headingCabins">
-                                                <h5 class="mb-0">
-                                                    <button class="btn text-uppercase btn-block collapsed" data-toggle="collapse" data-target="#cabins-collapse" aria-expanded="true" aria-controls="overview-collapse">
-                                                        Cabins
-                                                    </button>
-                                                </h5>
-                                            </div>
-                                            <div id="cabins-collapse" class="collapse collapsible" aria-labelledby="headingCabins" data-parent="#collapse-tabs-accordion">
-                                                <div class="card-body p-sm-0 border-sm-0">
-                                                    <h4>Quick Facts</h4>
-                                                    <span class="font-weight-semibold font-size-md">Number Of Cabins: </span><?php echo $data['NumberOfCabins']; ?><br>
-                                                    <span class="font-weight-semibold font-size-md">Capacity: </span><?php echo $data['PaxCapacity']; ?><br>
-                                                    <span class="font-weight-semibold font-size-md">Option to Share: </span><?php echo $data['OptionToShare']; ?><br>
-                                                    <span class="font-weight-semibold font-size-md">Interconnectable Cabins: </span><?php echo $data['InterconnectableCabins']; ?><br>
-                                                    <span class="font-weight-semibold font-size-md">Air Conditioning: </span><?php echo $data['AirConditioning']; ?><br>
-                                                    <hr>
-                                                    <?php
-                                                    $count = 0;
-                                                    foreach ($data['CabinDTOs'] as $item) {
-                                                    ?>
-                                                        <h4><?php echo $item['Name']; ?></h4>
-                                                        <img class="mb-4" src="<?php echo $item['ImageDTOs'][0]['ImageUrl']; ?>"><br>
-                                                        <span class="font-weight-semibold font-size-md">Size: </span><?php echo $item['Size']; ?><br>
-                                                        <span class="font-weight-semibold font-size-md">Beds: </span><?php echo $item['Beds']; ?><br>
-                                                        <span class="font-weight-semibold font-size-md">Windows: </span><?php echo $item['Windows']; ?><br>
-                                                        <?php echo $item['Features']; ?>
-                                                        <hr>
-                                                    <?php
-                                                    }
-                                                    ?>
+                                        <!-- Cabins -->
+                                        <div class="tab-pane" id="cabins" role="tabpanel" aria-labelledby="cabins-tab">
+                                            <div class="card bg-transparent mb-4 mb-sm-0">
+                                                <div class="card-header d-block d-sm-none bg-transparent px-0 py-1" id="headingCabins">
+                                                    <h5 class="mb-0">
+                                                        <button class="btn text-uppercase btn-block collapsed" data-toggle="collapse" data-target="#cabins-collapse" aria-expanded="true" aria-controls="overview-collapse">
+                                                            Cabins
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div id="cabins-collapse" class="collapse collapsible" aria-labelledby="headingCabins" data-parent="#collapse-tabs-accordion">
+                                                    <div class="row">
+                                                        <!-- left -->
+                                                        <div class="col-lg-8 col-sm-12">
+                                                            <div class="card-body p-sm-0 border-sm-0">
+                                                                <h4>Quick Facts</h4>
+                                                                <span class="font-weight-semibold font-size-md">Number Of Cabins: </span><?php echo $data['NumberOfCabins']; ?><br>
+                                                                <span class="font-weight-semibold font-size-md">Capacity: </span><?php echo $data['PaxCapacity']; ?><br>
+                                                                <span class="font-weight-semibold font-size-md">Option to Share: </span><?php echo $data['OptionToShare']; ?><br>
+                                                                <span class="font-weight-semibold font-size-md">Interconnectable Cabins: </span><?php echo $data['InterconnectableCabins']; ?><br>
+                                                                <span class="font-weight-semibold font-size-md">Air Conditioning: </span><?php echo $data['AirConditioning']; ?><br>
+                                                                <hr>
+                                                                <?php
+                                                                $count = 0;
+                                                                foreach ($data['CabinDTOs'] as $item) {
+                                                                ?>
+                                                                    <h4><?php echo $item['Name']; ?></h4>
+                                                                    <img class="mb-4" src="<?php echo $item['ImageDTOs'][0]['ImageUrl']; ?>"><br>
+                                                                    <span class="font-weight-semibold font-size-md">Size: </span><?php echo $item['Size']; ?><br>
+                                                                    <span class="font-weight-semibold font-size-md">Beds: </span><?php echo $item['Beds']; ?><br>
+                                                                    <span class="font-weight-semibold font-size-md">Windows: </span><?php echo $item['Windows']; ?><br>
+                                                                    <?php echo $item['Features']; ?>
+                                                                    <hr>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                            </div>
+                                                        </div>
+                                                        <!-- right -->
+                                                        <div class="col-lg-4 col-sm-12">
+                                                            <div class="card-body px-0 pb-3">
+                                                                <!-- Country -->
+                                                                <h4>
+                                                                    <?php
+                                                                    $types = get_field('travel_type');
+                                                                    if ($types) :
+                                                                        foreach ($types as $type) :
+                                                                            echo get_the_title($type->ID);
+                                                                        endforeach;
+                                                                    endif;
+                                                                    ?>
+                                                                    Highlights</h4>
+                                                                <?php echo get_field('highlights'); ?>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+
+
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                        </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- End Left Content -->
-                    <!-- Right Content -->
-                    <div class="sidebar col-12 col-xl-4 pt-1">
-
-                        <!-- Contact Form -->
-                        <div class="card-body px-0 pb-3">
-                            <div class="card-title text-uppercase text-dark font-weight-semibold font-size-md">
-                                <span class="text-secondary d-inline-block mr-2"><i class="fas fa-envelope"></i></span>
-                                <span>Contact me</span>
-                            </div>
-                            <div class="contact-form">
-                                <form>
-                                    <div class="form-group mb-2">
-                                        <label class="sr-only" for="name">Name</label>
-                                        <input type="text" id="name" class="form-control form-control-sm border-0 bg-white" placeholder="Name:">
-                                    </div>
-                                    <div class="form-group mb-2">
-                                        <label class="sr-only" for="email">Email</label>
-                                        <input type="text" id="email" class="form-control form-control-sm border-0 bg-white" placeholder="Email Address:">
-                                    </div>
-                                    <div class="form-group mb-2">
-                                        <label class="sr-only" for="message">Message</label>
-                                        <textarea class="form-control border-0" id="message" placeholder="Message..."></textarea>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary btn-block btn-sm">Send Message
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
+                        <!-- End Left Content -->
 
                     </div>
-                    <!-- End Right Content -->
+                    <!-- End Page Content -->
                 </div>
-                <!-- End Page Content -->
             </div>
+            <!-- end page wrapper -->
         </div>
-        <!-- end page wrapper -->
-    </div>
-    <!-- End Content Wrapper -->
+        <!-- End Content Wrapper -->
     </div>
 
     <!-- Recently Viewed-->

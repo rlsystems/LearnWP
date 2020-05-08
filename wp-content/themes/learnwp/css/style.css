@@ -25482,4 +25482,12 @@ button.mfp-arrow:hover, button.mfp-arrow:focus, button.mfp-arrow:active {
 strong {
   font-weight: 600 !important;
 }
+
+.brand-white img {
+  max-height: 48px !important;
+}
+
+.brand-black img {
+  max-height: 48px !important;
+}
 /*# sourceMappingURL=style.css.map */
