@@ -25490,4 +25490,10 @@ strong {
 .brand-black img {
   max-height: 48px !important;
 }
+
+.bg-pattern-trees {
+  background-image: url("../img/background-topo.jpg");
+  background-size: cover;
+  background-position: center;
+}
 /*# sourceMappingURL=style.css.map */

@@ -240,6 +240,62 @@ function learnwp_sidebars(){
     );
     register_sidebar(
         array(
+            'name' => 'Destination 1 Large',
+            'id' => 'destination-1',
+            'description' => 'First destination area (large)',
+            'before_widget' => '<div class="widget-wrapper">',
+            'after_widget' => '</div>',
+            'before_title' => '<h2 class="widget-title">',
+            'after_title' => '</h2>',
+
+        )
+    );
+    register_sidebar(
+        array(
+            'name' => 'Destination 2 Small',
+            'id' => 'destination-2',
+            'description' => 'Second destination area',
+            'before_widget' => '<div class="widget-wrapper">',
+            'after_widget' => '</div>',
+            'before_title' => '<h2 class="widget-title">',
+            'after_title' => '</h2>',
+        )
+    );
+    register_sidebar(
+        array(
+            'name' => 'Destination 3 Small',
+            'id' => 'destination-3',
+            'description' => 'Third destination area (small)',
+            'before_widget' => '<div class="widget-wrapper">',
+            'after_widget' => '</div>',
+            'before_title' => '<h2 class="widget-title">',
+            'after_title' => '</h2>',
+        )
+    );
+    register_sidebar(
+        array(
+            'name' => 'Destination 4 Medium',
+            'id' => 'destination-4',
+            'description' => 'Fourth destination area (medium)',
+            'before_widget' => '<div class="widget-wrapper">',
+            'after_widget' => '</div>',
+            'before_title' => '<h2 class="widget-title">',
+            'after_title' => '</h2>',
+        )
+    );
+    register_sidebar(
+        array(
+            'name' => 'Destination 5 Large',
+            'id' => 'destination-5',
+            'description' => 'Fifth destination area',
+            'before_widget' => '<div class="widget-wrapper">',
+            'after_widget' => '</div>',
+            'before_title' => '<h2 class="widget-title">',
+            'after_title' => '</h2>',
+        )
+    );
+    register_sidebar(
+        array(
             'name' => 'Service 1',
             'id' => 'services-1',
             'description' => 'First service area',

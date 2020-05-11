@@ -72,31 +72,10 @@ while (have_posts()) :
                                     $count += 1;
                                 endforeach;
                             endif;
-                            ?> /
-                            <!-- Style -->
-                            <?php $styles = get_field('style');
-                            $count = 0;
-                            if ($styles) :
-                                foreach ($styles as $style) :
-                                    if ($count > 0) {
-                                        echo ", ";
-                                    }
-                                    echo get_the_title($style->ID);
-                                    $count += 1;
-                                endforeach;
-                            endif;
                             ?>
 
 
-                        </div>
-                        <!-- share links -->
-                        <div class="ml-0 ml-lg-auto mt-4 mt-lg-0 d-flex flex-wrap flex-sm-nowrap">
-                            <h2 class="text-dark mr-3 mb-2">
-                                <?php
-                                $price = number_format(get_field('price_from'), 0, '.', ',');
-                                echo "$" . $price;
-                                ?>+
-                            </h2>
+
                         </div>
 
                     </div>
@@ -163,24 +142,61 @@ while (have_posts()) :
 
                                                         </div>
                                                     </div>
-                                                    <!-- right -->
+                                                    <!-- right Sidebar -->
                                                     <div class="col-lg-4 col-sm-12">
-                                                        <div class="card-body px-0 pb-3">
-                                                            <!-- Country -->
+                                                        <!-- Info -->
+                                                        <div class="card px-0 widget border-0 rounded-0 mb-6 bg-grey-06">
                                                             <div class="card-title text-uppercase text-dark font-weight-semibold font-size-md">
-                                                                <?php
-                                                                $types = get_field('travel_type');
-                                                                if ($types) :
-                                                                    foreach ($types as $type) :
-                                                                        echo get_the_title($type->ID);
-                                                                    endforeach;
-                                                                endif;
-                                                                ?>
-                                                                
-                                                                <span>Highlights</span>
+                                                                <span>Cruise Information</span>
                                                             </div>
-                                                            <?php echo get_field('highlights'); ?>
+                                                            <div class="card-body px-0 pb-0">
+                                                                <ul class="list-group list-group-flush">
+                                                                    <li class="list-group-item bg-transparent d-flex text-dark px-0">
+                                                                        <label class="font-weight-semibold text-dark mb-0">Price From</label>
+                                                                        <span class="text-green ml-auto">
+                                                                            <h4>
+                                                                                <?php
+                                                                                $price = number_format(get_field('price_from'), 0, '.', ',');
+                                                                                echo "$" . $price;
+                                                                                ?>
+                                                                            </h4>
+
+                                                                        </span>
+                                                                    </li>
+                                                                    <li class="list-group-item bg-transparent d-flex text-dark px-0">
+                                                                        <label class="font-weight-semibold text-dark mb-0">Price Range</label>
+                                                                        <span class="text-green font-weight-semibold font-size-md ml-auto">
+                                                                            <?php
+                                                                            $price = number_format($data['LowestPrice'], 0, '.', ',');
+                                                                            echo "$" . $price;
+                                                                            ?>
+                                                                            -
+                                                                            <?php
+                                                                            $price = number_format($data['HighestPrice'], 0, '.', ',');
+                                                                            echo "$" . $price;
+                                                                            ?>
+                                                                        </span>
+                                                                    </li>
+                                                                    <li class="list-group-item bg-transparent d-flex text-dark px-0">
+                                                                        <label class="font-weight-semibold text-dark mb-0">Style</label>
+                                                                        <span class="text-primary font-weight-semibold font-size-md ml-auto">
+                                                                            <!-- Style -->
+                                                                            <?php $styles = get_field('style');
+                                                                            if ($styles) :
+                                                                                foreach ($styles as $style) :
+                                                                                    echo get_the_title($style->ID);
+                                                                                endforeach;
+                                                                            endif;
+                                                                            ?>
+
+                                                                        </span>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
                                                         </div>
+                                                        <!-- End Info -->
+
+                                                        <!-- Contact Form -->
                                                         <div class="card-body px-0 pb-3">
                                                             <div class="card-title text-uppercase text-dark font-weight-semibold font-size-md">
                                                                 <span>Send an Enquiry</span>
@@ -204,6 +220,25 @@ while (have_posts()) :
                                                                 </form>
                                                             </div>
                                                         </div>
+                                                        <!-- End Contact Form -->
+                                                        <!-- Highlights -->
+                                                        <div class="card-body px-0 pb-3">
+
+                                                            <div class="card-title text-uppercase text-dark font-weight-semibold font-size-md">
+                                                                <?php
+                                                                $types = get_field('travel_type');
+                                                                if ($types) :
+                                                                    foreach ($types as $type) :
+                                                                        echo get_the_title($type->ID);
+                                                                    endforeach;
+                                                                endif;
+                                                                ?>
+                                                                Highlights
+                                                            </div>
+                                                            <?php echo get_field('highlights'); ?>
+
+                                                        </div>
+                                                        <!-- End Highlights -->
                                                     </div>
                                                 </div>
 
@@ -215,7 +250,6 @@ while (have_posts()) :
                                     <?php
                                     $count = 0;
                                     foreach ($data['Itineraries'] as $item) {
-
                                     ?>
                                         <div class="tab-pane" id="itinerary-<?php echo $item['Id']; ?>" role="tabpanel" aria-labelledby="<?php echo $item['Id']; ?>-tab">
                                             <div class="card bg-transparent mb-4 mb-sm-0">
@@ -255,9 +289,52 @@ while (have_posts()) :
                                                         </div>
                                                         <!-- right -->
                                                         <div class="col-lg-4 col-sm-12">
-                                                            <!-- date widget -->
-                                                            <div class="card-body px-0 pb-0">
-                                                                <h4>2020 Availability <span class="float-right badge badge-primary">Promos</span></h4>
+                                                            <!-- Info -->
+                                                            <div class="card px-0 widget border-0 rounded-0 mb-6 bg-grey-06">
+                                                                <div class="card-title text-uppercase text-dark font-weight-semibold font-size-md">
+                                                                    <span>Cruise Information</span>
+                                                                </div>
+                                                                <div class="card-body px-0 pb-0">
+                                                                    <ul class="list-group list-group-flush">
+
+                                                                        <li class="list-group-item bg-transparent d-flex text-dark px-0">
+                                                                            <label class="font-weight-semibold text-dark mb-0">Price Range</label>
+                                                                            <span class="text-green font-weight-semibold font-size-md ml-auto">
+                                                                                <?php
+                                                                                $price = number_format($item['LowestPrice'], 0, '.', ',');
+                                                                                echo "$" . $price;
+                                                                                ?>
+                                                                                -
+                                                                                <?php
+                                                                                $price = number_format($item['HighestPrice'], 0, '.', ',');
+                                                                                echo "$" . $price;
+                                                                                ?>
+                                                                            </span>
+                                                                        </li>
+                                                                        <li class="list-group-item bg-transparent d-flex text-dark px-0">
+                                                                            <label class="font-weight-semibold text-dark mb-0">Style</label>
+                                                                            <span class="text-primary font-weight-semibold font-size-md ml-auto">
+                                                                                <!-- Style -->
+                                                                                <?php $styles = get_field('style');
+                                                                                if ($styles) :
+                                                                                    foreach ($styles as $style) :
+                                                                                        echo get_the_title($style->ID);
+                                                                                    endforeach;
+                                                                                endif;
+                                                                                ?>
+
+                                                                            </span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <!-- End Info -->
+                                                            <div class="card-body bg-grey px-0 pb-0">
+
+                                                                <div class="card-title text-uppercase text-dark font-weight-semibold font-size-md">
+                                                                    <span>2020 Availability</span><span class="float-right badge badge-primary">Promos</span>
+                                                                </div>
+                                                                </h4>
                                                                 <ul class="list-group list-group-flush">
                                                                     <?php
                                                                     $months = $item['DepartureMonths'];
@@ -298,64 +375,62 @@ while (have_posts()) :
 
                                                                     ?>
                                                                 </ul>
-                                                                <!-- <ul class="list-group list-group-flush">
-                                                                    <li class="list-group-item bg-transparent d-flex text-dark px-0 border-top-0">
-                                                                        <label class="text-dark font-weight-semibold mb-0">January</label>
-                                                                        <span class="text-dark ml-auto">1</span>
-                                                                    </li>
 
-                                                                </ul> -->
-                                                                </span>
-                                                                <!-- Inclusions -->
-                                                                <div class="card-body px-0 pb-0 mt-5">
-                                                                    <h4>Inclusions</h4>
-                                                                    <ul class="icon-list list-group list-group-flush list-group-borderless">
-                                                                        <?php
-                                                                        $inclusions = $item['Inclusions'];
-                                                                        if ($inclusions) :
-                                                                            foreach ($inclusions as $inclusion) :
-                                                                        ?>
-                                                                                <li class="list-group-item p-0 mb-3 icon-box no-shape icon-box-style-03 ">
-                                                                                    <span class="icon-box-icon d-inline-block mr-1">+</span>
-                                                                                    <span>
-                                                                                        <?php
-                                                                                        echo $inclusion['Description'];
-                                                                                        ?>
-                                                                                    </span>
-                                                                                </li>
-                                                                        <?php
-                                                                            endforeach;
-                                                                        endif;
-                                                                        ?>
-                                                                    </ul>
-                                                                </div>
-                                                                <!-- Exclusions -->
-                                                                <div class="card-body px-0 pb-0 mt-5">
-                                                                    <h4>Exclusions</h4>
-                                                                    <ul class="icon-list list-group list-group-flush list-group-borderless">
-                                                                        <?php
-                                                                        $exclusions = $item['Exclusions'];
-                                                                        if ($exclusions) :
-                                                                            foreach ($exclusions as $exclusion) :
-                                                                        ?>
-                                                                                <li class="list-group-item p-0 mb-3 icon-box no-shape icon-box-style-03 ">
-                                                                                    <span class="icon-box-icon d-inline-block mr-1">-</span>
-                                                                                    <span>
-                                                                                        <?php
-                                                                                        echo $exclusion['Description'];
-                                                                                        ?>
-                                                                                    </span>
-                                                                                </li>
-                                                                        <?php
-                                                                            endforeach;
-                                                                        endif;
-                                                                        ?>
-                                                                    </ul>
-                                                                </div>
+
 
                                                             </div>
+                                                            </span>
+                                                            <!-- Inclusions -->
+                                                            <div class="card-body px-0 pb-0 mt-5">
+                                                                <div class="card-title text-uppercase text-dark font-weight-semibold font-size-md">
+                                                                    <span>Inclusions</span>
+                                                                </div>
+                                                                <ul class="icon-list list-group list-group-flush list-group-borderless">
+                                                                    <?php
+                                                                    $inclusions = $item['Inclusions'];
+                                                                    if ($inclusions) :
+                                                                        foreach ($inclusions as $inclusion) :
+                                                                    ?>
+                                                                            <li class="list-group-item p-0 mb-3 icon-box no-shape icon-box-style-03 ">
+                                                                                <span class="icon-box-icon d-inline-block mr-1">+</span>
+                                                                                <span>
+                                                                                    <?php
+                                                                                    echo $inclusion['Description'];
+                                                                                    ?>
+                                                                                </span>
+                                                                            </li>
+                                                                    <?php
+                                                                        endforeach;
+                                                                    endif;
+                                                                    ?>
+                                                                </ul>
+                                                            </div>
+                                                            <!-- Exclusions -->
+                                                            <div class="card-body px-0 pb-0 mt-5">
+                                                                <div class="card-title text-uppercase text-dark font-weight-semibold font-size-md">
+                                                                    <span>Exclusions</span>
+                                                                </div>
+                                                                <ul class="icon-list list-group list-group-flush list-group-borderless">
+                                                                    <?php
+                                                                    $exclusions = $item['Exclusions'];
+                                                                    if ($exclusions) :
+                                                                        foreach ($exclusions as $exclusion) :
+                                                                    ?>
+                                                                            <li class="list-group-item p-0 mb-3 icon-box no-shape icon-box-style-03 ">
+                                                                                <span class="icon-box-icon d-inline-block mr-1">-</span>
+                                                                                <span>
+                                                                                    <?php
+                                                                                    echo $exclusion['Description'];
+                                                                                    ?>
+                                                                                </span>
+                                                                            </li>
+                                                                    <?php
+                                                                        endforeach;
+                                                                    endif;
+                                                                    ?>
+                                                                </ul>
+                                                            </div>
                                                         </div>
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -363,6 +438,8 @@ while (have_posts()) :
                                     }
                                         ?>
 
+
+                                        </div>
                                         <!-- Cabins -->
                                         <div class="tab-pane" id="cabins" role="tabpanel" aria-labelledby="cabins-tab">
                                             <div class="card bg-transparent mb-4 mb-sm-0">
@@ -401,11 +478,12 @@ while (have_posts()) :
                                                                 ?>
                                                             </div>
                                                         </div>
-                                                        <!-- right -->
+                                                        <!-- right Sidebar -->
                                                         <div class="col-lg-4 col-sm-12">
+                                                            <!-- Highlights -->
                                                             <div class="card-body px-0 pb-3">
-                                                                <!-- Country -->
-                                                                <h4>
+
+                                                                <div class="card-title text-uppercase text-dark font-weight-semibold font-size-md">
                                                                     <?php
                                                                     $types = get_field('travel_type');
                                                                     if ($types) :
@@ -414,9 +492,12 @@ while (have_posts()) :
                                                                         endforeach;
                                                                     endif;
                                                                     ?>
-                                                                    Highlights</h4>
+                                                                    Highlights
+                                                                </div>
                                                                 <?php echo get_field('highlights'); ?>
+
                                                             </div>
+                                                            <!-- End Highlights -->
 
                                                         </div>
                                                     </div>
@@ -425,7 +506,6 @@ while (have_posts()) :
 
                                                 </div>
                                             </div>
-                                        </div>
                                         </div>
                                 </div>
                             </div>
@@ -446,118 +526,25 @@ while (have_posts()) :
         <div class="container">
             <div class="mb-6">
                 <h5 class="mb-0">
-                    Recently Viewed
+                    Related Travel
                 </h5>
             </div>
             <div class="row">
-                <div class="col-lg-4 mb-4 mb-lg-0">
-                    <div class="store media align-items-stretch bg-white">
-                        <div class="store-image position-relative">
-                            <a href="listing-details-full-image.html">
-                                <img src="images/shop/recent-view-1.jpg" alt="Recent view 1">
-                            </a>
-                            <div class="image-content position-absolute d-flex align-items-center">
-                                <div class="content-right ml-auto d-flex">
-                                    <a href="images/shop/full-top-place-3.jpg" class="item viewing" data-toggle="tooltip" data-placement="top" title="Quickview" data-gtf-mfp="true">
-                                        <svg class="icon icon-expand">
-                                            <use xlink:href="#icon-expand"></use>
-                                        </svg>
-                                    </a>
-                                    <a href="#" class="item marking" data-toggle="tooltip" data-placement="top" title="Bookmark"><i class="fal fa-bookmark"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="media-body pl-0 pl-sm-3 pt-4 pt-sm-0">
-                            <a href="listing-details-full-image.html" class="font-size-md font-weight-semibold text-dark d-inline-block mb-2 lh-11"><span class="letter-spacing-25">Canabo View Street, Main St</span> </a>
-                            <ul class="list-inline store-meta mb-2 lh-1 font-size-sm d-flex align-items-center flex-wrap">
-                                <li class="list-inline-item"><span class="badge badge-warning d-inline-block mr-1">4.3</span><span class="number">6 rating</span>
-                                </li>
-                                <li class="list-inline-item separate"></li>
-                                <li class="list-inline-item"><span class="mr-1">From</span><span class="text-danger font-weight-semibold">$8.00</span></li>
-                            </ul>
-                            <div>
-                                <span class="d-inline-block mr-1"><i class="fal fa-map-marker-alt">
-                                    </i>
-                                </span>
-                                <a href="#" class="text-secondary text-decoration-none address">77 Main St,
-                                    Queen,
-                                    NY</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 mb-4 mb-lg-0">
-                    <div class="store media align-items-stretch bg-white">
-                        <div class="store-image position-relative">
-                            <a href="listing-details-full-image.html">
-                                <img src="images/shop/recent-view-2.jpg" alt="Recent view 1">
-                            </a>
-                            <div class="image-content position-absolute d-flex align-items-center">
-                                <div class="content-right ml-auto d-flex">
-                                    <a href="images/shop/full-top-place-4.jpg" class="item viewing" data-toggle="tooltip" data-placement="top" title="Quickview" data-gtf-mfp="true">
-                                        <svg class="icon icon-expand">
-                                            <use xlink:href="#icon-expand"></use>
-                                        </svg>
-                                    </a>
-                                    <a href="#" class="item marking" data-toggle="tooltip" data-placement="top" title="Bookmark"><i class="fal fa-bookmark"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="media-body pl-0 pl-sm-3 pt-4 pt-sm-0">
-                            <a href="listing-details-full-image.html" class="font-size-md font-weight-semibold text-dark d-inline-block mb-2 lh-11"><span class="letter-spacing-25">Japan's Sushi - 10th Ave St</span> </a>
-                            <ul class="list-inline store-meta mb-2 lh-1 font-size-sm d-flex align-items-center flex-wrap">
-                                <li class="list-inline-item"><span class="badge badge-success d-inline-block mr-1">5.0</span><span class="number">7 rating</span>
-                                </li>
-                                <li class="list-inline-item separate"></li>
-                                <li class="list-inline-item"><span class="mr-1">From</span><span class="text-danger font-weight-semibold">$12.00</span></li>
-                            </ul>
-                            <div>
-                                <span class="d-inline-block mr-1"><i class="fal fa-map-marker-alt">
-                                    </i>
-                                </span>
-                                <a href="#" class="text-secondary text-decoration-none address">99 10th Ave
-                                    St,
-                                    Mahattan, NY</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 mb-4 mb-lg-0">
-                    <div class="store media align-items-stretch bg-white">
-                        <div class="store-image position-relative">
-                            <a href="listing-details-full-image.html">
-                                <img src="images/shop/recent-view-3.jpg" alt="Recent view 1">
-                            </a>
-                            <div class="image-content position-absolute d-flex align-items-center">
-                                <div class="content-right ml-auto d-flex">
-                                    <a href="images/shop/full-top-place-5.jpg" class="item viewing" data-toggle="tooltip" data-placement="top" title="Quickview" data-gtf-mfp="true">
-                                        <svg class="icon icon-expand">
-                                            <use xlink:href="#icon-expand"></use>
-                                        </svg>
-                                    </a>
-                                    <a href="#" class="item marking" data-toggle="tooltip" data-placement="top" title="Bookmark"><i class="fal fa-bookmark"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="media-body pl-0 pl-sm-3 pt-4 pt-sm-0">
-                            <a href="listing-details-full-image.html" class="font-size-md font-weight-semibold text-dark d-inline-block mb-2 lh-11"><span class="letter-spacing-25">Korean Bingsu Shop</span></a>
-                            <ul class="list-inline store-meta mb-2 lh-1 font-size-sm d-flex align-items-center flex-wrap">
-                                <li class="list-inline-item"><span class="badge badge-success d-inline-block mr-1">5.0</span><span class="number">7 rating</span>
-                                </li>
-                                <li class="list-inline-item separate"></li>
-                                <li class="list-inline-item"><span class="mr-1">From</span><span class="text-danger font-weight-semibold">$12.00</span></li>
-                            </ul>
-                            <div>
-                                <span class="d-inline-block mr-1"><i class="fal fa-map-marker-alt">
-                                    </i>
-                                </span>
-                                <a href="#" class="text-secondary text-decoration-none address">534 Salem
-                                    Rd St,
-                                    Newark, NY</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                //loop
+                $args = array(
+                    'post_type' => 'properties',
+                    'posts_per_page' => 3
+
+                );
+                $secondary = new WP_Query($args);
+                if ($secondary->have_posts()) :
+                    while ($secondary->have_posts()) : $secondary->the_post();
+                        get_template_part('template-parts/content', 'related');
+                    endwhile;
+                    wp_reset_postdata(); //very important to rest after custom query
+                endif;
+                ?>
             </div>
         </div>
     </div>

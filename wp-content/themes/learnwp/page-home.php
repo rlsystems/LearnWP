@@ -144,8 +144,32 @@
 
         </div>
     </section> -->
-    <!-- #section 02start -->
-    <section id="section-02" class="pb-8 feature-destination pt-85">
+
+
+
+
+
+
+    <!-- <section class="home-main-testimonial pt-12 pb-13">
+        <h2 class="mb-8">
+            <span class="font-weight-semibold">Clients </span>
+            <span class="font-weight-light">Review</span>
+        </h2>
+        <div class="container">
+            <div class="row">
+
+                <div class="col col-md-12">
+                    <div class="video embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/P6jvmZafAIo" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+
+    <!-- New Section Featured Destinations -->
+    <section id="section-09" class="pt-12 pb-13 bg-pattern-trees">
         <div class="container">
             <div class="mb-8">
                 <h2 class="mb-0">
@@ -153,29 +177,98 @@
                     <span class="font-weight-light">Destinations</span>
                 </h2>
             </div>
-            <div class="slick-slider arrow-center" data-slick-options='{"slidesToShow": 3, "autoplay":false,"dots":false,"responsive":[{"breakpoint": 992,"settings": {"slidesToShow": 3,"arrows":false,"dots":true,"autoplay":true}},{"breakpoint": 768,"settings": {"slidesToShow": 2,"arrows":false,"dots":true,"autoplay":true}},{"breakpoint": 400,"settings": {"slidesToShow": 1,"arrows":false,"dots":true,"autoplay":true}}]}'>
-                <?php
-                //Destinations Loop
-                $featured = new WP_Query('post_type=destinations');
-                if ($featured->have_posts()) :
-                    while ($featured->have_posts()) : $featured->the_post();
-                ?>
-                        <div class="col-12">
-                            <?php get_template_part('template-parts/content', 'destinations') ?>
+            <div class="row align-items-center justify-content-center">
+                <div class="col-md-8 mb-4">
+                    <!-- Destination Image - 1 - Amazon -->
+                    <div class="image-box card border-0 rounded-0 hover-scale">
+                        <a href="<?php echo get_permalink($post = 94); ?>" class="image position-relative card-img">
+                            <?php
+                            if (is_active_sidebar('destination-1')) {
+                                dynamic_sidebar('destination-1');
+                            }
+                            ?>
+                        </a>
+                        <div class="content-box position-absolute px-4 pb-3">
+ 
+                            <span class="h4 font-weight-normal mb-0 text-white fs-24">
+                                Amazon River Cruises
+                            </span>
                         </div>
-                <?php
-                    endwhile;
-                    wp_reset_postdata(); //very important to rest after custom query
-                endif;
-                ?>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <!-- Destination Image 2 - Mekong-->
+                    <div class="image-box card mb-4 rounded-0 border-0 hover-scale">
+                        <a href="<?php echo get_permalink($post = 101); ?>" class="image position-relative card-img">
+                            <?php
+                            if (is_active_sidebar('destination-2')) {
+                                dynamic_sidebar('destination-2');
+                            }
+                            ?>
+                        </a>
+                        <div class="text-white content-box px-4 pb-3 card-img-overlay">
 
+                            <span class="font-weight-normal text-white font-size-lg">
+                                Mekong River
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Destination 3 Halong -->
+                    <div class="image-box card border-0 rounded-0 hover-scale">
+                        <a href="<?php echo get_permalink($post = 101); ?>" class="image position-relative card-img">
+                            <?php
+                            if (is_active_sidebar('destination-3')) {
+                                dynamic_sidebar('destination-3');
+                            }
+                            ?>
+                        </a>
+                        <div class="text-white content-box px-4 pb-3 card-img-overlay">
+                            <a href="../explore-full-map-list.html" class="font-weight-normal text-white font-size-lg">
+                                Cambodia
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-md-0 mb-4">
+                    <!-- Destination 4 Mapi -->
+                    <div class="image-box card border-0 rounded-0 hover-scale">
+                        <a href="<?php echo get_permalink($post = 94); ?>" class="image position-relative card-img">
+                            <?php
+                            if (is_active_sidebar('destination-4')) {
+                                dynamic_sidebar('destination-4');
+                            }
+                            ?>
+                        </a>
+                        <div class="text-white content-box px-4 pb-3 card-img-overlay">
+                            <span class="font-weight-normal text-white font-size-lg">
+                                South America
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <!-- Destination 5 -->
+                    <div class="image-box card border-0 rounded-0 hover-scale">
+                        <a href="<?php echo get_permalink($post = 99); ?>" class="image position-relative card-img">
+                            <?php
+                            if (is_active_sidebar('destination-5')) {
+                                dynamic_sidebar('destination-5');
+                            }
+                            ?>
+                        </a>
+                        <div class="text-white content-box px-4 pb-3 card-img-overlay">
+                            <span class="h4 mb-0 font-weight-normal text-white fs-24">
+                                Galapagos Islands
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-    <!-- /#section-02 end -->
 
     <!-- section 03 - Our Directory -->
-    <section id="section-03" class="pb-8 our-directory">
+    <section id="section-03" class="pt-85 pb-8 our-directory">
         <!-- heading container -->
         <div class="container">
             <!-- title -->
@@ -1018,23 +1111,6 @@
         </div>
         <!-- end directory slide -->
     </section>
-    <!-- <section class="home-main-testimonial pt-12 pb-13">
-        <h2 class="mb-8">
-            <span class="font-weight-semibold">Clients </span>
-            <span class="font-weight-light">Review</span>
-        </h2>
-        <div class="container">
-            <div class="row">
-
-                <div class="col col-md-12">
-                    <div class="video embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/P6jvmZafAIo" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
 
     <!-- #section 04 start Testimonials-->
     <section class="home-main-testimonial pt-12 pb-13" id="section-04">
