@@ -1,5 +1,5 @@
    <!-- Listing -->
-   <div class="col-lg-4 mb-6">
+   <div class="col-lg-3 mb-6">
        <div class="store card border-0 rounded-0">
            <div class="position-relative store-image">
                <a href="<?php echo get_permalink() ?>">
@@ -41,23 +41,7 @@
                             ?>+
                        </span>
                    </li>
-                   <li class="list-inline-item separate"></li>
-                   <li class="list-inline-item">
-
-                       <svg class="icon icon-bed">
-                           <use xlink:href="#icon-bed"></use>
-                       </svg>
-                       <span>
-                           <?php
-                            $travelTypes = get_field('travel_type');
-                            if ($travelTypes) :
-                                foreach ($travelTypes as $travelType) :
-                                    echo get_the_title($travelType->ID);
-                                endforeach;
-                            endif;
-                            ?>
-                       </span>
-                   </li>
+                   
                </ul>
 
            </div>

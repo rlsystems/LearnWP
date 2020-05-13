@@ -25496,4 +25496,47 @@ strong {
   background-size: cover;
   background-position: center;
 }
+
+.banner .heading {
+  max-width: '100%';
+  margin: 0 auto;
+}
+
+.banner .banner-content {
+  padding-top: 628px;
+  padding-bottom: 40px;
+}
+
+.banner-text-large {
+  font-size: 4em;
+  letter-spacing: 15px;
+  font-weight: 300;
+}
+
+.banner-text-med {
+  font-size: 2em;
+  letter-spacing: 15px;
+  font-weight: 300;
+}
+
+.banner-text-small {
+  font-size: 1em;
+  letter-spacing: 5px;
+  font-weight: 400;
+}
+
+.banner-text-small a {
+  color: #fff;
+}
+
+.nav-link {
+  font-size: .90em !important;
+  font-weight: 400 !important;
+  letter-spacing: .10em !important;
+}
+
+.page-content-inner {
+  padding-right: 45px;
+  margin-right: 0px;
+}
 /*# sourceMappingURL=style.css.map */

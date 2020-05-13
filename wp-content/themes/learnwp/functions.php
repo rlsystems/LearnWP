@@ -212,6 +212,17 @@ if (class_exists('MultiPostThumbnails')) {
         )
     );
 }
+//secondary image to destinations
+if (class_exists('MultiPostThumbnails')) {
+    new MultiPostThumbnails(
+        array(
+            // Replace [YOUR THEME TEXT DOMAIN] below with the text domain of your theme (found in the theme's `style.css`).
+            'label' => __( 'Decoration', '[YOUR THEME TEXT DOMAIN]'),
+            'id' => 'decoration-image',
+            'post_type' => 'destinations'
+        )
+    );
+}
 
 //Sidebars
 add_action('widgets_init', 'learnwp_sidebars');

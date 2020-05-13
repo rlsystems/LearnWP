@@ -130,3 +130,65 @@ strong {
 	background-size: cover;
 	background-position: center;
 }
+
+.banner {
+    .heading {
+        max-width: '100%';
+        margin: 0 auto;
+    }
+    .banner-content {
+		padding-top: 628px;
+        padding-bottom: 40px;
+    }
+    
+}
+
+.banner-text-large {
+    font-size: 4em;
+    letter-spacing: 15px;
+    font-weight: 300;
+}
+
+.banner-text-med {
+    font-size: 2em;
+    letter-spacing: 15px;
+    font-weight: 300;
+}
+
+.banner-text-small {
+    font-size: 1em;
+    letter-spacing: 5px;
+    font-weight: 400;
+    a {
+        color: #fff;
+    }
+}
+
+.nav-link {
+    font-size: .90em !important;
+    font-weight: 400 !important;
+    letter-spacing: .10em !important;
+}
+.page-content-inner {
+    padding-right: 45px;
+    margin-right: 0px;
+    //border-right: 1px solid #dee2e6;
+}
+// .job-filter{
+//     background-color: rgba($color: #fff, $alpha: .4);
+//     color: #fff;
+//     text-transform: uppercase;
+//     font-size: .90em ;
+//     font-weight: 400 ;
+//     letter-spacing: .10em ;
+// }
+// .nav-pills.tab-style-02 .nav-link{
+//     background-color: rgba($color: #fff, $alpha: .0);
+//     padding: 10px 0;
+// }
+// .nav-pills.tab-style-02 .nav-link.active {
+//     color: black;
+//     background-color: rgba($color: #fff, $alpha: 1);
+//     padding: 10px 0;
+// }
+
