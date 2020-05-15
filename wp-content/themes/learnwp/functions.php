@@ -186,6 +186,12 @@ function create_post_type_Travel()
 }
 add_action('init', 'create_post_type_Travel');
 
+//Excerpt length
+function custom_excerpt_length( $length ) {
+    return 20;
+}
+add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
+
 //custom image size for blog thumbnails
 add_image_size( 'blog-image-crop', 510, 414, true );
 

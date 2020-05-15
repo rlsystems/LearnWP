@@ -17611,10 +17611,10 @@ iframe {
   .sticky-area-wrap.sticky .navbar-brand {
     max-height: 56px;
   }
-  .sticky-area-wrap.sticky .navbar-brand .brand-white {
+  .sticky-area-wrap.sticky .brand-white {
     display: none !important;
   }
-  .sticky-area-wrap.sticky .navbar-brand .brand-black {
+  .sticky-area-wrap.sticky .brand-black {
     display: inline !important;
   }
   .sticky-area-wrap.sticky .nav-link {
@@ -25503,7 +25503,7 @@ strong {
 }
 
 .banner .banner-content {
-  padding-top: 628px;
+  padding-top: 65vh;
   padding-bottom: 40px;
 }
 

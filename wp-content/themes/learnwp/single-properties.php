@@ -87,11 +87,14 @@ while (have_posts()) :
         </div>
         <!-- Price Change -->
         <script>
-            function priceChange(price) {
-                document.getElementById("priceFrom").textContent = price;
-            }
-
-            function priceChangeTitle(itineraryName) {
+            function ChangeTitle(price, itineraryName) {
+                var formatter = new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                    minimumFractionDigits: 0
+                });
+           
+                document.getElementById("priceFrom").textContent = formatter.format(price);
                 document.getElementById("priceFromTitle").textContent = itineraryName;
             }
         </script>
@@ -109,25 +112,23 @@ while (have_posts()) :
 
                                 <!-- Tab Nav -->
                                 <ul class="nav nav-pills tab-style-01" role="tablist">
+                                    <!-- Overview Tab Nav -->
                                     <li class="nav-item">
-                                        <a class="nav-link active" onclick="priceChange('$<?php $price = number_format($data['LowestPrice'], 0, '.', ',');
-                                                                                            echo $price; ?>'); priceChangeTitle('Price From'); " id="overview-tab" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Overview</a>
+                                        <a class="nav-link active" onclick="ChangeTitle('<?php echo $data['LowestPrice'] ?>', 'Price From');" id="overview-tab" data-toggle="tab" href="#overview" role="tab" >Overview</a>
                                     </li>
                                     <!-- Itinerary Loop Tab Nav -->
                                     <?php
                                     foreach ($data['Itineraries'] as $item) {
                                     ?>
                                         <li class="nav-item">
-                                            <a class="nav-link" onclick="priceChange('$<?php $price = number_format($item['LowestPrice'], 0, '.', ',');
-                                                                                        echo $price; ?>'); priceChangeTitle('<?php echo $item['ShortName'] ?> From'); " id="itinerary-<?php echo $item['Id']; ?>-tab" data-toggle="tab" href="#itinerary-<?php echo $item['Id']; ?>" role="tab"><?php echo $item['ShortName']; ?> </a>
+                                            <a class="nav-link" onclick="ChangeTitle('<?php echo $item['LowestPrice'] ?>', '<?php echo $item['ShortName'] ?> From');" id="itinerary-<?php echo $item['Id']; ?>-tab" data-toggle="tab" href="#itinerary-<?php echo $item['Id']; ?>" role="tab"><?php echo $item['ShortName']; ?> </a>
                                         </li>
                                     <?php
                                     }
                                     ?>
-                                    <!-- End Itinerary Loop Tab Nav -->
+                                    <!-- Cabin Tab Nav -->
                                     <li class="nav-item">
-                                        <a class="nav-link" onclick="priceChange('$<?php $price = number_format($data['LowestPrice'], 0, '.', ',');
-                                                                                    echo $price; ?>'); priceChangeTitle('Price From'); " id="cabins-tab" data-toggle="tab" href="#cabins" role="tab">Cabins</a>
+                                        <a class="nav-link active" onclick="ChangeTitle('<?php echo $data['LowestPrice'] ?>', 'Price From');" id="cabins-tab" data-toggle="tab" href="#cabins" role="tab" >Cabins</a>
                                     </li>
                                 </ul>
                             </div>
@@ -263,11 +264,12 @@ while (have_posts()) :
                                                         foreach ($days as $day) :
 
                                                     ?>
+                                                            <hr>
                                                             <h5><span class="badge badge-primary">Day <?php echo $day['DayNumber']; ?></span> <?php echo $day['Title']; ?></h5>
                                                             <?php
                                                             echo $day['Excerpt'];
                                                             ?>
-                                                            <hr>
+
                                                     <?php
                                                         endforeach;
                                                     endif;

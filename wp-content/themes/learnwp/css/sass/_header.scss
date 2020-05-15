@@ -591,10 +591,17 @@
 			
 		}
 		
-		.navbar-brand .brand-white { //swap out black and white logos
+		// .navbar-brand .brand-white { //swap out black and white logos
+		// 	display: none !important;
+		// }
+		// .navbar-brand .brand-black {
+		// 	display: inline !important;
+
+		// }
+		.brand-white { //swap out black and white logos
 			display: none !important;
 		}
-		.navbar-brand .brand-black {
+		.brand-black {
 			display: inline !important;
 
 		}

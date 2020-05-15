@@ -33,6 +33,7 @@ while (have_posts()) :
 
         <!-- xx -->
         <?php //Get Properties in Destination
+
         $posts = get_posts(array(
             'post_type' => 'properties',
             'posts_per_page' => 8,
@@ -45,18 +46,21 @@ while (have_posts()) :
                 )
             )
         ));
+
         ?>
+
+
 
 
         <!-- Page wrapper -->
         <div class="page-wrapper bg-white">
             <div class="container">
 
-                
                 <!-- Page Content -->
                 <div class="page-container row">
 
                     <div class="page-content col-12 order-0 order-lg-1 mb-8 mb-lg-0">
+                        <!-- Nav -->
                         <div class="explore-filter d-lg-flex align-items-center d-block mt-6">
                             <div class="text-dark font-weight-semibold font-size-md mb-4 mb-lg-0"><?php echo count($posts); ?> Results found</div>
                             <div class="form-filter d-flex align-items-center ml-auto">
@@ -77,6 +81,8 @@ while (have_posts()) :
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Cruises -->
                         <div class="row equal-height">
 
 
@@ -96,7 +102,7 @@ while (have_posts()) :
                             <?php endif; ?>
 
                         </div>
-                        <ul class="pagination pagination-style-02 justify-content-center pb-12 mt-8">
+                        <ul class="pagination pagination-style-02 justify-content-center pb-6 mt-4">
                             <li class="page-item"><a href="#" class="page-link"><i class="fal fa-chevron-left"></i></a>
                             </li>
                             <li class="page-item"><a href="#" class="page-link current">1</a></li>
@@ -111,22 +117,22 @@ while (have_posts()) :
                     </div>
                 </div>
                 <!-- End Page Content -->
-                <!-- Description Block -->
-                <div class="row mt-12">
-                    <div class="col-lg-9"> <?php the_content() ?></div>
-                    <div class="col-lg-3">
+
+                <!--  Block -->
+                <div class="row pt-8 pb-12">
+                    <!-- https://www.youtube.com/watch?v=W_kvIzKVu2c -->
+                    <div class="col-lg-6"> <?php the_content() ?></div>
+                    <div class="col-lg-6">
                         <!-- Decoration image -->
                         <div class="image">
-                            <?php
-                            if (class_exists('MultiPostThumbnails')) :
-                                MultiPostThumbnails::the_post_thumbnail(get_post_type(), 'decoration-image');
-                            endif;
-                            ?>
-                        </div>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/W_kvIzKVu2c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>
                     </div>
+
                 </div>
-                <!-- End Description Block -->
+                <!-- End Block -->
+
             </div>
+
         </div>
         <!-- end page wrapper -->
     </div>
