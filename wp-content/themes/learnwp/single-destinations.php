@@ -82,6 +82,7 @@ while (have_posts()) :
                                         <button class="btn btn-primary inline" id="searchBtn"><i class="fal fa-search"></i></button>
                                         <input type="hidden" name="action" value="searchFilter">
                                         <input type="hidden" name="form-type" value="destinations">
+                                        <input type="hidden" name="destinationFilter" value="<?php echo get_the_ID() ?>">
                                     </span>
                                     </div>
                                    

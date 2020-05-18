@@ -435,13 +435,6 @@ function search_filter_function()
                 'compare' => '<'
             );
     }
-    // // for extra
-    // if (isset($_POST['extraFilter']) && $_POST['extraFilter'])
-    //     $args['meta_query'][] = array(
-    //         'key' => 'country',
-    //         'value' => '"' . $_POST['extraFilter'] . '"',
-    //         'compare' => 'LIKE'
-    //     );
 
 
 

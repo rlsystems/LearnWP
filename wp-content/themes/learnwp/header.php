@@ -44,11 +44,11 @@
                             <div class="header-customize justify-content-end align-items-center d-none d-xl-flex">
                     
                                 <div class="header-customize-item button brand-white">
-                                    <a href="../page-submit-listing.html" class="btn btn-outline-light btn-icon-right">Book Now
+                                    <a href="<?php echo get_site_url() ?>/search" class="btn btn-outline-light btn-icon-right">Book Now
                                         <i class="far fa-angle-right"></i></a>
                                 </div>
                                 <div class="header-customize-item button brand-black">
-                                    <a href="../page-submit-listing.html" class="btn btn-outline-dark btn-icon-right">Book Now
+                                    <a href="<?php echo get_site_url() ?>/search" class="btn btn-outline-dark btn-icon-right">Book Now
                                         <i class="far fa-angle-right"></i></a>
                                 </div>
                                
